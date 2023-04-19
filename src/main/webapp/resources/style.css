@@ -1,0 +1,131 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+
+body {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#todo-nav{
+    margin-left:5px;
+    margin-top:30px;
+    margin-bottom: 50px;
+    list-style: none;
+    text-align: center;
+}
+
+#todo-nav li{
+    width: 100px;
+    display: inline-block;
+    
+}
+
+#todo-nav::after{
+    clear:both;
+    display: block;
+    content:'';
+}
+
+#todo-nav  a{
+    text-decoration: none;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ccc;
+    padding:10px;
+}
+
+#todo-nav a:link{
+    color:black;
+}
+
+#todo-nav a:visited{
+    color: black;
+}
+
+
+.todo-item{
+    margin-left:20px;
+    margin-top:20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.todo-item::after{
+    clear:both;
+    display: block;
+    content: '';
+}
+
+.todo-item-day{
+    box-sizing:border-box;
+    line-height: 180px;
+    text-align: center;
+    font-weight: bold;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc;
+    width: 200px;
+    min-height: 200px;
+    float:left;
+    text-align: center;
+
+}
+
+.todo-item-form{
+    box-sizing:border-box;
+    float: left;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc;
+    min-height: 200px;
+    width: 200px;
+    padding:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-item-form p{
+    margin-bottom: 5px;
+    /* text-align: center; */
+}
+
+/* .todo-item-form input{
+    border-style: none;
+    text-align: center;
+} */
+
+.todo-item-form button {
+    width: 100%;
+    min-height: 25px;
+    border-style: hidden;
+}
+
+.todo-item-form button:hover {
+    background-color: rgb(181, 181, 181);
+}
+
+.todo-item-list{
+    padding:20px;
+    box-sizing:border-box;
+    float:left;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc;
+    min-height: 200px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* list-style: none; */
+}
+
+
+.todo-item-list li {
+    margin-left:30px;
+}
+
