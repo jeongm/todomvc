@@ -3,7 +3,7 @@
 const apiStore = function(){
     'use strict';
     //api 서버 주소입니다.
-    const SERVER_URL="http://133.186.144.236:8100";
+    const SERVER_URL="http://localhost:8081";
 
     //user id는 변경해주세요
     const X_USER_ID = "jeong";
@@ -25,14 +25,17 @@ const apiStore = function(){
         https://nhnacademy.dooray.com/share/pages/7i6-W8S2TI6e-oKUJVL57g/3373349495003408976
     */
     api.save= async function(todoDate, todoSubject){
-
+        console.log("save"+todoDate)
         /*#1-1 해당 날짜에 >=DAILY_MAX_TODO_COUNT 이면 적절한 Error 발생 시키기.
             countByTodoDate(todoDate); 사용해서 등록 count를 구합니다.
         */
 
-       if(await countByTodoDate(todoDate) >= DAILY_MAX_TODO_COUNT) {
+        if(await countByTodoDate(todoDate) >= DAILY_MAX_TODO_COUNT) {
             throw new Error('저장가능한 TODO는 8개입니다.');
-       }
+            return ;
+        }
+        console.log("test")
+
 
         /*#1-2  저장구현
 
@@ -62,11 +65,11 @@ const apiStore = function(){
         //참고로 응답코드가 몇번으로 return 되는지 console.log로 남겨서 직접확인해보세요.
 
         const response = await fetch(url,options);
-        const responseJson = await response.json();
-
         if(!response.ok) {
+
             throw new Error("todo list api error");
         }
+        const responseJson = await response.json();
 
         return responseJson;
 
@@ -109,7 +112,7 @@ const apiStore = function(){
 
     //TODO#4 해당 날짜에 존재하는 모든 todo 조회, 존재하지 않는다면 빈 배열을 리턴합니다.
     api.getTodoItemList= async function(todoDate){
-
+        // console.log(todoDate)
         const arr = todoDate.split("-");
         let year = arr[0];
         let month =arr[1];
@@ -127,11 +130,11 @@ const apiStore = function(){
         }
 
         const response = await fetch(url,options);
-        const responseJson = await response.json();
-
         if(!response.ok) {
+
             throw new Error("todo list api error");
         }
+        const responseJson = await response.json();
 
         return responseJson;
 
@@ -154,11 +157,11 @@ const apiStore = function(){
         }
 
         const response = await fetch(url,options);
-        const responseJson = await response.json();
-        
         if(!response.ok){
+
             throw new Error('todo list api Error');
         }
+        const responseJson = await response.json();
 
         return responseJson.count;
 

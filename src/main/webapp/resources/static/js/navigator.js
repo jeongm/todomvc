@@ -109,10 +109,8 @@ function Navigator(uiBtnPrevMonthId, uiBtnNextMonthId, uiBtnCurrentMonthId){
     function _navigate(targetYear,targetMonth){
        //페이지 이동 : ./index.html?year=2023&month=03
        //https://developer.mozilla.org/en-US/docs/Web/API/Location
-       
-       location.href="./index.html?year=" + targetYear + "&month=" + _convertToZeroMonthAndDay(targetMonth);
-
-
+       console.log("test");
+       location.href="/?year=" + targetYear + "&month=" + _convertToZeroMonthAndDay(targetMonth);
     }
 
     //https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/parseInt

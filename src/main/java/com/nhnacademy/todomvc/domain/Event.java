@@ -1,15 +1,29 @@
 package com.nhnacademy.todomvc.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Getter;
 import lombok.Value;
 
 import java.time.LocalDateTime;
 
-@Value
+
 public class Event {
-    private int id;
-    private String userId;
+    @Getter
+    private Long id;
+    @Getter
+    private String eventAt;
+    @Getter
     private String subject;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime eventDt;
+    @Getter
+    private LocalDateTime createAt;
+
+    public Event() { }
+
+    public Event(Long id, String eventAt, String subject) {
+        this.id = id;
+        this.eventAt = eventAt;
+        this.subject = subject;
+        this.createAt = LocalDateTime.now();
+    }
+
 }
