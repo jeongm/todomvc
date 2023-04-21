@@ -7,7 +7,6 @@ import com.nhnacademy.todomvc.domain.TodoRegisterRequest;
 import com.nhnacademy.todomvc.exception.EventNotFoundException;
 import com.nhnacademy.todomvc.repository.TodoRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
 
 import javax.validation.Valid;
 import java.util.List;

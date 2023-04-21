@@ -1,10 +1,11 @@
 package com.nhnacademy.todomvc.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class TodoRegisterRequest {
-    @Getter
     private String subject;
-    @Getter
     private String eventAt;
 }

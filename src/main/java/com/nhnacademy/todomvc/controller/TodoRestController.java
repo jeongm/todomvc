@@ -29,7 +29,7 @@ public class TodoRestController {
 
     // 조회
     @GetMapping("/events")
-    public ResponseEntity<List> eventViewByDay(@Valid @ModelAttribute TodoDateRequest todoDateRequest, BindingResult bindingResult) {
+    public ResponseEntity<List> eventView(@Valid @ModelAttribute TodoDateRequest todoDateRequest, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             throw new BedRequestException();
         }
@@ -62,13 +62,15 @@ public class TodoRestController {
 //
     //삭제- 하나
     @DeleteMapping("/events/{id}")
-    public void eventDeleteById(@PathVariable("id") String id){
+    public ResponseEntity<Void> eventDeleteById(@PathVariable("id") String id){
         todoService.deleteEventById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     //삭제- 일단위
     @DeleteMapping("/events/daily/{eventAt}")
-    public void eventDeleteByDaily(@PathVariable("eventAt") String eventAt){
+    public ResponseEntity<Void> eventDeleteByDaily(@PathVariable("eventAt") String eventAt){
         todoService.deleteEventByDaily(eventAt);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 
