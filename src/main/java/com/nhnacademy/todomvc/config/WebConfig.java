@@ -32,8 +32,6 @@ public class WebConfig implements WebMvcConfigurer,ApplicationContextAware {
         this.objectMapper = objectMapper;
     }
 
-//TODO applicationContext 뭔지 찾아보기
-
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
