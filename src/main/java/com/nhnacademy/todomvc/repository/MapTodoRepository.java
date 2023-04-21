@@ -7,18 +7,15 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
 
 @Slf4j
 public class MapTodoRepository implements TodoRepository{
-    //ConcurrentMap<String, List<Event>>-> key: 날짜, id autoIdx
     private final ConcurrentMap<String, List<Event>> eventMap = new ConcurrentHashMap<>();
     private final AtomicLong autoIdx = new AtomicLong();
 
 
     @Override
     public List<Event> getTodoItemList(String todoDate) {
-        // 일별 todolist
         List<Event> todoItemList = new ArrayList<>();
         for (Map.Entry<String,List<Event>> events: eventMap.entrySet()) {
             if(events.getKey().equals(todoDate)){
@@ -43,13 +40,11 @@ public class MapTodoRepository implements TodoRepository{
 
     @Override
     public Event getEventById(long id) {
-        Event target = new Event();
 
         for(List<Event> events : eventMap.values()){
             for (Event event: events) {
                 if(event.getId()==id){
-                    target = event;
-                    return target;
+                    return event;
                 }
             }
         }
@@ -72,9 +67,7 @@ public class MapTodoRepository implements TodoRepository{
 
     @Override
     public void deleteByTodoDate(String todoDate) {
-        if(Objects.nonNull(eventMap.get(todoDate))){
-            eventMap.remove(todoDate);
-        }
+        eventMap.remove(todoDate);
     }
 
     @Override
@@ -94,10 +87,6 @@ public class MapTodoRepository implements TodoRepository{
 
     @Override
     public Integer countByTodoDate(String todoDate) {
-        if(Objects.isNull(eventMap.get(todoDate))){
-            return 0;
-        }
-
         return eventMap.get(todoDate).size();
 
     }

@@ -1,8 +1,6 @@
 package com.nhnacademy.todomvc.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
-import lombok.Value;
 
 import java.time.LocalDateTime;
 
