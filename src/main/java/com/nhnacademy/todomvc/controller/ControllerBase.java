@@ -1,2 +1,4 @@
-package com.nhnacademy.todomvc.controller;public interface ControllerBase {
+package com.nhnacademy.todomvc.controller;
+
+public interface ControllerBase {
 }

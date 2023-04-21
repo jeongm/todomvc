@@ -1,2 +1,4 @@
-package com.nhnacademy.todomvc;public interface Base {
+package com.nhnacademy.todomvc;
+
+public interface Base {
 }

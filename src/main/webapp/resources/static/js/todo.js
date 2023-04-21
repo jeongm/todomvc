@@ -10,6 +10,7 @@ const store = apiStore();
 
     window.addEventListener("DOMContentLoaded",(event)=>{
         displayYearMonth(navi.getYear(), navi.getMonth());
+
         createTodoList();
     });
 
@@ -22,16 +23,16 @@ const store = apiStore();
         todoNavMonth.innerText = targetMonth;
     }
 
-    async function createTodoList(){
+    function createTodoList(){
 
         const year = navi.getYear();
+
         const month = navi.getMonth();
-    
         const daysInMonth = getDaysInMonth(year,month);
         // console.log("daysInMonth:" + daysInMonth);
         const todoItemContainer = document.getElementById("todo-item-container");
+
         const template = document.getElementById("todo-item-template");
-    
         for(let i=1; i<=daysInMonth; i++ ){
            //https://developer.mozilla.org/ko/docs/Web/API/Document/importNode
             const todoItem = document.importNode(template.content,true);
@@ -41,7 +42,7 @@ const store = apiStore();
             //날짜표시
             todoItemDay.innerText="";
             const span1 = document.createElement("span");
-            span1.innerText=i;
+            span1.innerText=i+"";
             todoItemDay.appendChild(span1);
     
             //form 날짜 설정 name=date
@@ -56,7 +57,10 @@ const store = apiStore();
             const deleteBtn = todoItem.querySelector("button[class=btn-remove-all]");
             deleteBtn.addEventListener("click",async function() {
                 if(confirm(`$todoDate.value`+"일정을 모두 삭제하시겠습니까?")) {
-                    await store.deleteByTodoDate(todoDate.value);
+                    try{
+                        await store.deleteByTodoDate(todoDate.value);
+                    }catch (e){
+                    }
                     clearTodoItemList(todoDate.value);
                 } 
             });
@@ -66,8 +70,7 @@ const store = apiStore();
             
             
             todoItemContainer.appendChild(todoItem);
-            await displayTodoItemList(todoDate.value);
-            //TODO#1 - 구현 .. 
+             displayTodoItemList(todoDate.value);
 
             
         }
@@ -92,6 +95,7 @@ const store = apiStore();
         if(validateForm(event.target)) {
             const todoDate = event.target['todoDate'].value;
             const todoSubject = event.target['todoSubject'].value;
+            console.log(todoDate)
             try{
                 await store.save(todoDate,todoSubject);
                 await displayTodoItemList(todoDate);
@@ -115,13 +119,18 @@ const store = apiStore();
     
     async function displayTodoItemList(todoDate) {
         clearTodoItemList(todoDate);
-        const todoItems = await store.getTodoItemList(todoDate);
-        const ul = document.getElementById("todo-item-list-"+todoDate);
 
-        for(let i = 0; i < todoItems.length; i++) {
-            const li = document.createElement("li");
-            li.innerText=todoItems[i].subject;
-            ul.appendChild(li);
+        const ul = document.getElementById("todo-item-list-"+todoDate);
+        try{
+            const todoItems = await store.getTodoItemList(todoDate);
+
+            for(let i = 0; i < todoItems.length; i++) {
+                const li = document.createElement("li");
+                li.innerText=todoItems[i].subject;
+                ul.appendChild(li);
+            }
+        }catch(e){
+            alert(e)
         }
 
     }
