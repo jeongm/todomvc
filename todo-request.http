@@ -1,0 +1,81 @@
+###등록 c
+POST http://localhost:8081/api/calendar/events
+Content-Type: application/json
+X-USER-ID: jeong
+
+{
+  "subject" : "Spring framework 학습",
+  "eventAt": "2023-04-02"
+}
+
+
+
+###조회 c
+GET http://localhost:8081/api/calendar/events/3?format=json
+Accept: application/json
+X-USER-ID: jeong
+
+
+
+###삭제 c
+DELETE http://localhost:8081/api/calendar/events/1
+Content-Type: application/json
+X-USER-ID: jeong
+
+###삭제 c
+DELETE http://localhost:8081/api/calendar/events/daily/2022-04-02
+Content-Type: application/json
+X-USER-ID: jeong
+
+###일일등록 카운트 c
+GET http://localhost:8081/api/calendar/daily-register-count?date=2023-04-19
+Accept: application/json
+X-USER-ID: jeong
+
+
+###월별조회 c
+GET http://localhost:8081/api/calendar/events/?year=2023&month=4
+Accept: application/json
+X-USER-ID: jeong
+
+
+###일별조회 c
+GET http://localhost:8081/api/calendar/events?year=2023&month=04&day=19
+Accept: application/json
+X-USER-ID: jeong
+
+
+###예외 400 year month 누락
+GET http://localhost:8081/api/calendar/events
+Accept: application/json
+X-USER-ID: jeong
+
+
+###예외 401 x-user-id 누락
+GET http://localhost:8081/api/calendar/events/1
+Accept: application/json
+
+
+###예외 403 x-user-id 잘못됨
+GET http://localhost:8081/api/calendar/events/1
+Accept: application/json
+X-USER-ID: abc
+
+###예외 404 존재하지 않는 이벤트 조회
+GET http://localhost:8081/api/calendar/events/1000000
+Accept: application/json
+X-USER-ID: jeong
+
+
+###예외 405 허용하지 않은 PATCH method 호출
+PATCH http://localhost:8081/api/calendar/events/1
+Accept: application/json
+X-USER-ID: jeong
+
+
+
+###예외 500
+GET http://localhost:8081/api/calendar/events/a
+Accept: application/json
+X-USER-ID: jeong
+
