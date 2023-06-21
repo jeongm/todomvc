@@ -3,7 +3,7 @@
 const apiStore = function(){
     'use strict';
     //api 서버 주소입니다.
-    const SERVER_URL="http://localhost:8081";
+    const SERVER_URL="http://localhost:8080";
 
     //user id는 변경해주세요
     const X_USER_ID = "jeong";
@@ -118,7 +118,8 @@ const apiStore = function(){
         let month =arr[1];
         let day = arr[2];
 
-        const url = SERVER_URL + "/api/calendar/events/?year=" + year + "&month=" + parseInt(month) + "&day=" + parseInt(day);
+        // const url = SERVER_URL + "/api/calendar/events/?year=" + year + "&month=" + parseInt(month) + "&day=" + parseInt(day);
+        const url = SERVER_URL + "/api/calendar/events/?year=" + year + "&month=" + month + "&day=" + day;
 
         //TODO#4-1 조회 구현
         const options = {

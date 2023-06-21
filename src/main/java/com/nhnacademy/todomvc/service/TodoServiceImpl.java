@@ -61,6 +61,11 @@ public class TodoServiceImpl implements TodoService{
         return eventId;
     }
 
+    /**
+     * 월 전체 todo 개수
+     * @param todoDate
+     * @return
+     */
     @Override
     public Count getTodoCount(String todoDate) {
         Count count = new Count(todoRepository.countByTodoDate(todoDate));

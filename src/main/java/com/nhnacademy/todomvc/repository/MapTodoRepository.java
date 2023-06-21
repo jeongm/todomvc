@@ -87,6 +87,9 @@ public class MapTodoRepository implements TodoRepository{
 
     @Override
     public Integer countByTodoDate(String todoDate) {
+        if(Objects.isNull(eventMap.get(todoDate)) ){
+            return 0;
+        }
         return eventMap.get(todoDate).size();
 
     }
